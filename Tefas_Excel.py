@@ -44,7 +44,7 @@ class Fon:
 print("Bilgiler alınıyor...")
 start_pos=2
 
-fonlar=["IBB","TAU","TI4"]  # Fonların kodlarını bu listeye gir.
+fonlar=["IBB","TAU","BIO"]  # Fonların kodlarını bu listeye gir.
 
 fon_list=[]
 for i in fonlar:
@@ -70,10 +70,10 @@ b["E1"]="Yıllık"
 b["H4"]=datetime.now()
 for fon in fon_list:
     b[f"A{start_pos}"]= fon.fonkod
-    b[f"B{start_pos}"]= float(fon.aylik.replace(",",".").strip("%"))/100
-    b[f"C{start_pos}"]= float(fon.ucaylik.replace(",",".").strip("%"))/100
-    b[f"D{start_pos}"]= float(fon.altiaylik.replace(",",".").strip("%"))/100
-    b[f"E{start_pos}"]= float(fon.yillik.replace(",",".").strip("%"))/100
+    b[f"B{start_pos}"]= float(fon.aylik.replace(",",".").strip("%"))/100 if fon.aylik != "NA" else "NA"
+    b[f"C{start_pos}"]= float(fon.ucaylik.replace(",",".").strip("%"))/100 if fon.ucaylik != "NA" else "NA"
+    b[f"D{start_pos}"]= float(fon.altiaylik.replace(",",".").strip("%"))/100 if fon.altiaylik != "NA" else "NA"
+    b[f"E{start_pos}"]= float(fon.yillik.replace(",",".").strip("%"))/100 if fon.yillik != "NA" else "NA"
     start_pos+=1
 b[f"A{start_pos}"] = "Ortalama"
 b[f"B{start_pos}"] = f"==AVERAGE(B1:B{start_pos-1})"
