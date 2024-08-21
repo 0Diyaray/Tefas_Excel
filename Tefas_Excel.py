@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 
 class Fon:
     def __init__(self, fon_kod):
+        self.fonkod = fon_kod
         yüzdelikler = self.web_fon(fon_kod)
         self.aylik = yüzdelikler[0]
         self.ucaylik = yüzdelikler[1]
@@ -68,7 +69,7 @@ b["D1"]="6 Aylık"
 b["E1"]="Yıllık"
 b["H4"]=datetime.now()
 for fon in fon_list:
-    b[f"A{start_pos}"]= fon.__class__.__name__
+    b[f"A{start_pos}"]= fon.fonkod
     b[f"B{start_pos}"]= fon.aylik
     b[f"C{start_pos}"]= fon.ucaylik
     b[f"D{start_pos}"]= fon.altiaylik
