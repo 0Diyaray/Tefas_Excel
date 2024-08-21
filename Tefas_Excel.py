@@ -38,6 +38,8 @@ class Fon:
                         son.append("NA")
         return son
 
+
+
 print("Bilgiler alınıyor...")
 start_pos=2
 
@@ -72,7 +74,7 @@ for fon in fon_list:
     b[f"D{start_pos}"]= fon.altiaylik
     b[f"E{start_pos}"]= fon.yillik
     start_pos+=1
-b["I11"]=datetime.now()
 workbook.save(file_path)
+print("Fonların performansları excel tablosuna aktarıldı.")
 print("Tamamlandı.",datetime.now())
-input("Kapatmak için bir tuşa basiniz.")
+
