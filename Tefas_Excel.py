@@ -70,11 +70,17 @@ b["E1"]="Yıllık"
 b["H4"]=datetime.now()
 for fon in fon_list:
     b[f"A{start_pos}"]= fon.fonkod
-    b[f"B{start_pos}"]= fon.aylik
-    b[f"C{start_pos}"]= fon.ucaylik
-    b[f"D{start_pos}"]= fon.altiaylik
-    b[f"E{start_pos}"]= fon.yillik
+    b[f"B{start_pos}"]= float(fon.aylik.replace(",",".").strip("%"))/100
+    b[f"C{start_pos}"]= float(fon.ucaylik.replace(",",".").strip("%"))/100
+    b[f"D{start_pos}"]= float(fon.altiaylik.replace(",",".").strip("%"))/100
+    b[f"E{start_pos}"]= float(fon.yillik.replace(",",".").strip("%"))/100
     start_pos+=1
+b[f"A{start_pos}"] = "Ortalama"
+b[f"B{start_pos}"] = f"==AVERAGE(B1:B{start_pos-1})"
+b[f"C{start_pos}"] = f"==AVERAGE(C1:C{start_pos-1})"
+b[f"D{start_pos}"] = f"==AVERAGE(D1:D{start_pos-1})"
+b[f"E{start_pos}"] = f"==AVERAGE(E1:E{start_pos-1})"
+
 workbook.save(file_path)
 print("Fonların performansları excel tablosuna aktarıldı.")
 print("Tamamlandı.",datetime.now())
