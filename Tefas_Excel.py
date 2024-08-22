@@ -44,11 +44,11 @@ class Fon:
 print("Bilgiler alınıyor...")
 start_pos=2
 
-fonlar=["IBB","TAU","BIO"]  # Fonların kodlarını bu listeye gir.
+fonlar=["TTY","TAU","BIO"]  # Fonların kodlarını bu listeye gir.
 
 fon_list=[]
 for i in fonlar:
-    fon_list.append(Fon(i))
+    fon_list.append(Fon(i)) if Fon(i).aylik+Fon(i).yillik!="0,0%0,0%" else print(f"{i} kodunda bir fon bulunamadı\nDiğer fonlara devam ediliyor...")
 
 #Fonları excel dosyasına yazdırma
 
