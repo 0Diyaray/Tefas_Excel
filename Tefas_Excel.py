@@ -44,7 +44,7 @@ class Fon:
 print("Bilgiler alınıyor...")
 start_pos=2
 
-fonlar=["TTY","TAU","BIO"]  # Fonların kodlarını bu listeye gir.
+fonlar=["IHK","TAU","BIO","TI4","ACD"]  # Fonların kodlarını bu listeye gir.
 
 fon_list=[]
 for i in fonlar:
@@ -63,19 +63,20 @@ except:
     workbook = Workbook()
 
 b=workbook.create_sheet(title="{}-{}-{}".format(now.day,now.month,now.year))
-b["B1"]="Aylık"
-b["C1"]="3 Aylık"
-b["D1"]="6 Aylık"
-b["E1"]="Yıllık"
+b["A1"],b["A1"].style="Fon",'Input'
+b["B1"],b["B1"].style="Aylık",'Input'
+b["C1"],b["C1"].style="3 Aylık",'Input'
+b["D1"],b["D1"].style="6 Aylık",'Input'
+b["E1"],b["E1"].style="Yıllık",'Input'
 b["H4"]=datetime.now()
 for fon in fon_list:
-    b[f"A{start_pos}"]= fon.fonkod
+    b[f"A{start_pos}"],b[f"A{start_pos}"].style= fon.fonkod,'Good'
     b[f"B{start_pos}"]= float(fon.aylik.replace(",",".").strip("%"))/100 if fon.aylik != "NA" else "NA"
     b[f"C{start_pos}"]= float(fon.ucaylik.replace(",",".").strip("%"))/100 if fon.ucaylik != "NA" else "NA"
     b[f"D{start_pos}"]= float(fon.altiaylik.replace(",",".").strip("%"))/100 if fon.altiaylik != "NA" else "NA"
     b[f"E{start_pos}"]= float(fon.yillik.replace(",",".").strip("%"))/100 if fon.yillik != "NA" else "NA"
     start_pos+=1
-b[f"A{start_pos}"] = "Ortalama"
+b[f"A{start_pos}"],b[f"A{start_pos}"].style = "Ortalama",'Bad'
 b[f"B{start_pos}"] = f"==AVERAGE(B1:B{start_pos-1})"
 b[f"C{start_pos}"] = f"==AVERAGE(C1:C{start_pos-1})"
 b[f"D{start_pos}"] = f"==AVERAGE(D1:D{start_pos-1})"
